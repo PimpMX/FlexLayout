@@ -35,13 +35,17 @@ export const Row = (props: IRowProps) => {
         if (child instanceof RowNode) {
             items.push(<Row key={child.getId()} layout={layout} node={child} />);
         } else if (child instanceof TabSetNode) {
+            if (child.getChildren().length == 0 && child.isEnableHideWhenEmpty()) {
+                i++;
+                continue;
+            }
             items.push(<TabSet key={child.getId()} layout={layout} node={child} />);
         }
         i++;
     }
 
     const style: Record<string, any> = {
-        flexGrow: Math.max(1, node.getWeight()*1000), // NOTE:  flex-grow cannot have values < 1 otherwise will not fill parent, need to normalize 
+        flexGrow: Math.max(1, node.getWeight() * 1000), // NOTE:  flex-grow cannot have values < 1 otherwise will not fill parent, need to normalize 
         minWidth: node.getMinWidth(),
         minHeight: node.getMinHeight(),
         maxWidth: node.getMaxWidth(),
@@ -54,12 +58,12 @@ export const Row = (props: IRowProps) => {
         style.flexDirection = "column";
     }
 
-     return (
+    return (
         <div
             ref={selfRef}
             className={layout.getClassName(CLASSES.FLEXLAYOUT__ROW)}
             style={style}
-            >
+        >
             {items}
         </div>
     );

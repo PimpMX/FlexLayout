@@ -180,7 +180,7 @@ export class RowNode extends Node implements IDropTarget {
                 }
             }
 
-            for (let i = index+1; i < c.length; i++) {
+            for (let i = index + 1; i < c.length; i++) {
                 const n = c[i] as TabSetNode | RowNode;
                 const m = h ? n.getMaxWidth() : n.getMaxHeight();
                 if (sizes[i] + altShift < m) {
@@ -196,11 +196,11 @@ export class RowNode extends Node implements IDropTarget {
         } else {
             let shift = splitterPos - startPosition;
             let altShift = 0;
-            if (sizes[index-1] + shift > smax) {
-                altShift = sizes[index-1] + shift - smax;
-                sizes[index-1] = smax;
+            if (sizes[index - 1] + shift > smax) {
+                altShift = sizes[index - 1] + shift - smax;
+                sizes[index - 1] = smax;
             } else {
-                sizes[index-1] += shift;
+                sizes[index - 1] += shift;
             }
 
             for (let i = index; i < c.length; i++) {

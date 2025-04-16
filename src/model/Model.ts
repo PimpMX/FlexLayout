@@ -156,7 +156,7 @@ export class Model {
                     let r = Rect.empty();
                     if (node.getParent() instanceof TabSetNode) {
                         r = node.getParent()!.getRect();
-                    } else  {
+                    } else {
                         r = (node.getParent() as BorderNode).getContentRect();
                     }
                     const oldLayoutWindow = this.windows.get(node.getWindowId())!;
@@ -478,7 +478,7 @@ export class Model {
     setOnCreateTabSet(onCreateTabSet: (tabNode?: TabNode) => ITabSetAttributes) {
         this.onCreateTabSet = onCreateTabSet;
     }
-    
+
     addChangeListener(listener: ((action: Action) => void)) {
         this.changeListeners.push(listener);
     }
@@ -665,6 +665,7 @@ export class Model {
 
         // tabset
         attributeDefinitions.add("tabSetEnableDeleteWhenEmpty", true).setType(Attribute.BOOLEAN);
+        attributeDefinitions.add("tabSetEnableHideWhenEmpty", true).setType(Attribute.BOOLEAN);
         attributeDefinitions.add("tabSetEnableDrop", true).setType(Attribute.BOOLEAN);
         attributeDefinitions.add("tabSetEnableDrag", true).setType(Attribute.BOOLEAN);
         attributeDefinitions.add("tabSetEnableDivide", true).setType(Attribute.BOOLEAN);

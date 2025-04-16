@@ -3,9 +3,9 @@ export type IBorderLocation = "top" | "bottom" | "left" | "right";
 export type ITabLocation = "top" | "bottom";
 
 export interface IJsonModel {
-    global?: IGlobalAttributes;
-    borders?: IJsonBorderNode[];
-    layout: IJsonRowNode; // top level 'row' is horizontal, rows inside rows take opposite orientation to parent row (ie can act as columns)
+	global?: IGlobalAttributes;
+	borders?: IJsonBorderNode[];
+	layout: IJsonRowNode; // top level 'row' is horizontal, rows inside rows take opposite orientation to parent row (ie can act as columns)
 	popouts?: Record<string, IJsonPopout>;
 }
 
@@ -17,27 +17,27 @@ export interface IJsonRect {
 }
 
 export interface IJsonPopout {
-    layout: IJsonRowNode;
-	rect: IJsonRect ;
+	layout: IJsonRowNode;
+	rect: IJsonRect;
 }
 
 export interface IJsonBorderNode extends IBorderAttributes {
-    location: IBorderLocation;
-    children: IJsonTabNode[];
+	location: IBorderLocation;
+	children: IJsonTabNode[];
 }
 
 export interface IJsonRowNode extends IRowAttributes {
-    children: (IJsonRowNode | IJsonTabSetNode)[];
+	children: (IJsonRowNode | IJsonTabSetNode)[];
 }
 
 export interface IJsonTabSetNode extends ITabSetAttributes {
 	/** Marks this as the active tab set, read from initial json but 
 	 * must subseqently be set on the model (only one tab set can be active)*/
-    active?: boolean; 
+	active?: boolean;
 	/** Marks this tab set as being maximized, read from initial json but 
 	 * must subseqently be set on the model (only one tab set can be maximized) */
-    maximized?: boolean; 
-    children: IJsonTabNode[];
+	maximized?: boolean;
+	children: IJsonTabNode[];
 }
 
 export interface IJsonTabNode extends ITabAttributes {
@@ -262,7 +262,7 @@ export interface IGlobalAttributes {
 	  Value for TabNode attribute enablePopoutOverlay if not overridden
 
 	  if this tab will not work correctly in a popout window when the main window is backgrounded (inactive)
-            then enabling this option will gray out this tab
+			then enabling this option will gray out this tab
 
 	  Default: false
 	 */
@@ -560,6 +560,13 @@ export interface ITabSetAttributes {
 	 */
 	enableDeleteWhenEmpty?: boolean;
 
+	/** 
+	  whether to hide this tabset when it has no tabs
+	  
+	  Default: inherited from Global attribute tabSetEnableHidWhenEmpty (default false)
+	 */
+	enableHideWhenEmpty?: boolean;
+
 	/**
 	  allow user to drag tabs to region of this tabset, splitting into new tabset
 
@@ -774,7 +781,7 @@ export interface ITabAttributes {
 
 	/**
 	  if this tab will not work correctly in a popout window when the main window is backgrounded (inactive)
-            then enabling this option will gray out this tab
+			then enabling this option will gray out this tab
 
 	  Default: inherited from Global attribute tabEnablePopoutOverlay (default false)
 	 */
